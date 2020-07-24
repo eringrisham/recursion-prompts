@@ -7,31 +7,95 @@
 // Example: 5! = 5 x 4 x 3 x 2 x 1 = 120
 // factorial(5); // 120
 var factorial = function(n) {
+    if (n < 0) {
+        return null;
+    }
+    if (n === 0) {
+        return 1;
+    }
+    return (n * factorial(n - 1));
 };
 
 // 2. Compute the sum of an array of integers.
 // sum([1,2,3,4,5,6]); // 21
 var sum = function(array) {
+    if (array.length === 0) {
+        return 0; 
+    }
+    return array[0] + sum(array.slice(1));
 };
 
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
 var arraySum = function(array) {
+   if (array.length === 0) {
+       return 0; 
+   }
+//    var arrString = array.toString();
+//    var parsed = parseInt(arrString);
+//    var stringNumArr = parsed.toString().split('');
+//    for (var i = 0; i < stringNumArr.length; i++) {
+//        return Number(stringNumArr[0]) + arraySum(Number(stringNumArr[i]));
+//    }
+var sum = 0;
+  for (var i = 0; i < array.length; i++) {
+     if (array[i] instanceof Array) { 
+         sum += arraySum(array[i]);
+    }
+     if (array[i] === Math.round(array[i])) {
+         sum += array[i];
+    }   
+  }
+ return sum;
 };
 
 // 4. Check if a number is even.
 var isEven = function(n) {
+    n = Math.abs(n);
+    // var even = false; 
+    // while (n >= 2) {
+    //     n -= 2;
+    // }
+    // if (n === 0) {
+    //     even = true;
+    // }
+    // return even; 
+    if (n === 0) {
+        return true;
+    } else if (n === 1) {
+        return false;
+    }
+    var num = n - 2;
+    if (isEven(num)) {
+        return true;
+    } else {
+        return false; 
+    }
 };
 
 // 5. Sum all integers below a given integer.
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 var sumBelow = function(n) {
+    if (n === 1 || n === 0){
+        return 0;
+    } 
+    if (n < 0) {
+        return n + 1 + (sumBelow(n + 1));
+    }
+     return n - 1 + (sumBelow(n - 1)); 
 };
+
+
 
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
 var range = function(x, y) {
+    if (x === y || x === y - 1 || y === x - 1) {
+        return [];
+    }
+  
+  
 };
 
 // 7. Compute the exponent of a number.
